@@ -53,7 +53,8 @@ class FumettoController extends Controller
      */
     public function show($id)
     {
-        //
+        $singoloFumetto = Fumetto::findOrFail($id);
+        return view('fumetti.show', compact('singoloFumetto'));
     }
 
     /**
