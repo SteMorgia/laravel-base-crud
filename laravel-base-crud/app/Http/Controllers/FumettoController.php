@@ -65,7 +65,12 @@ class FumettoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $singoloFumetto = Fumetto::find($id);
+        if($singoloFumetto) {
+            return view('fumetti.edit', compact('singoloFumetto'));
+        } else {
+            abort(404);
+        }
     }
 
     /**
@@ -77,7 +82,12 @@ class FumettoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $singoloFumetto = Fumetto::find($id);
+        $data = $request->all();
+        $singoloFumetto->update($data);
+        $singoloFumetto->save();
+
+        return redirect()->route('fumetti.index');
     }
 
     /**
@@ -88,6 +98,12 @@ class FumettoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $singoloFumetto = Fumetto::find($id);
+        if($singoloFumetto) {
+            $singoloFumetto->delete();
+            return redirect()->route('fumetti.index');
+        } else {
+            abort(404);
+        }
     }
 }

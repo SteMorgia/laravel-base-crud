@@ -1,10 +1,10 @@
 @extends('layout.app')
 
-@section('title', 'Crea nuovo fumetto')
+@section('title', 'Modifica fumetto')
 
 @section('content')
 
-    <form action="{{route('fumetti.store')}}" method="POST">
+    <form action="{{route()}}" method="POST">
 
         @csrf
 
