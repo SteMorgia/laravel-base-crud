@@ -36,6 +36,18 @@ class FumettoController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'title'=> 'required|max:255',
+                'description'=> 'required|max:255',
+                'thumb'=> 'required|max:255|url',
+                'price'=> 'required|max:10',
+                'series'=> 'required|max:255',
+                'sale_date'=> 'required',
+                'type'=> 'required|max:255',
+            ]
+        );
+
         $data = $request->all();
         $newComic = new Fumetto();
         $newComic->fill($data);
@@ -83,6 +95,17 @@ class FumettoController extends Controller
     public function update(Request $request, $id)
     {
         $singoloFumetto = Fumetto::find($id);
+        $request->validate(
+            [
+                'title'=> 'required|max:255',
+                'description'=> 'required|max:255',
+                'thumb'=> 'required|max:255|url',
+                'price'=> 'required|max:10',
+                'series'=> 'required|max:255',
+                'sale_date'=> 'required',
+                'type'=> 'required|max:255',
+            ]
+        );
         $data = $request->all();
         $singoloFumetto->update($data);
         $singoloFumetto->save();
